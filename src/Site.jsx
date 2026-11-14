@@ -14,7 +14,7 @@ export function Logo({ onClick }) {
   );
 }
 export function Header({ page, go }) {
-  const nav = [['home', '서비스 소개'], ['make', '여권 만들기'], ['studio', '3D 스튜디오'], ['shop', '가맹점'], ['passport', '내 여권']];
+  const nav = [['home', '서비스 소개'], ['make', '저장소 만들기'], ['studio', '3D 스튜디오'], ['shop', '가맹점'], ['passport', '내 저장소']];
   return (
     <header className="site-h">
       <div className="util">
@@ -62,7 +62,7 @@ const CATS = [
   ['홈카페', '좋아하는 컵과 테이블 톤으로 홈카페 소품을 맞춰요.'],
   ['소품', '작은 물건 하나도 지금 방 분위기에 어울리는지 먼저 봐요.'],
   ['체형 핏', '내 체형을 넣으면 사이즈와 핏을 3D 마네킹으로 확인해요.'],
-  ['선물', '친구의 여권을 빌려 취향에 맞는 선물을 골라요.'],
+  ['선물', '친구의 저장소를 빌려 취향에 맞는 선물을 골라요.'],
 ];
 export function Home({ go, body, vec }) {
   const [ci, setCi] = useState(0);
@@ -92,9 +92,9 @@ export function Home({ go, body, vec }) {
           <div className="h-idx"><span className="n">{String(ci + 1).padStart(2, '0')}</span><i /><span className="t">{CATS[ci][0]}</span></div>
           <div className="h-idx2">{String(CATS.length).padStart(2, '0')}</div>
           <p className="h-desc" key={ci}>{CATS[ci][1]}</p>
-          <button className="pill white" onClick={() => go('make')}>내 취향 여권 만들기</button>
+          <button className="pill white" onClick={() => go('make')}>내 취향 저장소 만들기</button>
         </div>
-        {hero && <img className="h-render" src={hero} alt="취향 여권으로 꾸민 방과 마네킹" />}
+        {hero && <img className="h-render" src={hero} alt="취향 저장소로 꾸민 방과 마네킹" />}
         <ul className="orbit">
           {CATS.map(([c], i) => <li key={c} className={i === ci ? 'on' : ''} style={{ '--k': i }} onClick={() => setCi(i)}><i />{c}</li>)}
         </ul>
@@ -117,7 +117,7 @@ export function Home({ go, body, vec }) {
       </section>
 
       <section className="sec yellow">
-        <Title eyebrow="Partners" light="어디서든" bold="나에게 맞추다" sub="여권 하나로, 처음 간 가게에서도 내 방과 내 몸에 맞는 것부터 보여줘요." />
+        <Title eyebrow="Partners" light="어디서든" bold="나에게 맞추다" sub="저장소 하나로, 처음 간 가게에서도 내 방과 내 몸에 맞는 것부터 보여줘요." />
         <div className="carousel">
           <div className="track" style={{ transform: `translateX(calc(50% - ${card * 244 + 122}px))` }}>
             {CARDS.map((c, i) => (
@@ -155,7 +155,7 @@ export function Home({ go, body, vec }) {
   );
 }
 
-/* ---------- 여권 만들기 ---------- */
+/* ---------- 저장소 만들기 ---------- */
 export function Make({ swipeIdx, onPick, imported, onImport, onAll, vec, go }) {
   const [stage, setStage] = useState(swipeIdx >= SWIPES.length ? 'import' : 'swipe');
   const [anim, setAnim] = useState(null);
@@ -176,7 +176,7 @@ export function Make({ swipeIdx, onPick, imported, onImport, onAll, vec, go }) {
     <main className="make">
       <div className="make-top">
         <div className="stepper">
-          {[['swipe', '취향 고르기'], ['import', '취향 가져오기'], ['done', '여권 완성']].map(([k, l], i) => (
+          {[['swipe', '취향 고르기'], ['import', '취향 가져오기'], ['done', '저장소 완성']].map(([k, l], i) => (
             <button key={k} className={stage === k ? 'on' : ''} onClick={() => setStage(k)}><span>0{i + 1}</span>{l}</button>
           ))}
         </div>
@@ -217,26 +217,26 @@ export function Make({ swipeIdx, onPick, imported, onImport, onAll, vec, go }) {
                     </ul>
                   )}
                   {!b && !done && <button className="pill blue full" disabled={!!busy} onClick={() => run(src)}>샘플 올리기</button>}
-                  {done && <p className="okline">여권에 {src.items.length}개 신호 추가됨</p>}
+                  {done && <p className="okline">저장소에 {src.items.length}개 신호 추가됨</p>}
                 </div>
               );
             })}
           </div>
           <div className="center mt40">
             {!doneAll && <button className="pill line" onClick={onAll}>샘플 한 번에 가져오기</button>}
-            <button className="pill blue" onClick={() => setStage('done')}>여권 완성하기</button>
+            <button className="pill blue" onClick={() => setStage('done')}>저장소 완성하기</button>
           </div>
         </section>
       )}
       {stage === 'done' && (
         <section className="sec yellow tight">
-          <Title eyebrow="Done" light="나만의 여권을" bold="받다" sub="이제 이 여권 하나로 3D 스튜디오와 모든 제휴 가게를 쓸 수 있어요." />
+          <Title eyebrow="Done" light="나만의 저장소를" bold="받다" sub="이제 이 저장소 하나로 3D 스튜디오와 모든 제휴 가게를 쓸 수 있어요." />
           <div className="done-wrap">
             <PassportBook vec={vec} small />
             <div className="done-cta">
               <button className="big-cta" onClick={() => go('studio', 'room')}><b>3D 내 방 열기</b><span>가진 물건 배치하고 추천 놓아보기 →</span></button>
               <button className="big-cta" onClick={() => go('studio', 'body')}><b>체형 넣고 입어보기</b><span>마네킹에 사이즈별로 입혀보기 →</span></button>
-              <button className="big-cta" onClick={() => go('shop')}><b>가맹점 둘러보기</b><span>여권으로 입장하면 순서가 바뀌어요 →</span></button>
+              <button className="big-cta" onClick={() => go('shop')}><b>가맹점 둘러보기</b><span>저장소로 입장하면 순서가 바뀌어요 →</span></button>
             </div>
           </div>
         </section>
@@ -245,15 +245,15 @@ export function Make({ swipeIdx, onPick, imported, onImport, onAll, vec, go }) {
   );
 }
 
-/* ---------- 여권 책자 ---------- */
+/* ---------- 저장소 카드 ---------- */
 export function PassportBook({ vec, isB, small, stamps = [], editable, onNudge }) {
   const empty = isEmpty(vec);
   return (
     <div className={`book ${small ? 'small' : ''}`}>
       <div className="cover">
         <svg viewBox="0 0 100 100" className="emb"><circle cx="50" cy="50" r="44" fill="none" stroke="#FFE04A" strokeWidth="2" /><circle cx="50" cy="50" r="36" fill="none" stroke="#FFE04A" strokeWidth=".8" /><path d="M50 22l6 20 20 2-16 12 6 20-16-11-16 11 6-20-16-12 20-2z" fill="#FFE04A" /></svg>
-        <p className="c1">TASTE PASSPORT</p>
-        <p className="c2">취향 여권</p>
+        <p className="c1">TASTEPASS</p>
+        <p className="c2">취향 저장소</p>
         <p className="c3">No. {isB ? 'TP-B-0002' : 'TP-K-0001'}</p>
       </div>
       <div className="page">
@@ -277,10 +277,10 @@ export function PassportBook({ vec, isB, small, stamps = [], editable, onNudge }
             ))}
           </div>
         )}
-        {empty && <p className="muted">아직 비어 있어요. 여권 만들기에서 취향을 골라주세요.</p>}
+        {empty && <p className="muted">아직 비어 있어요. 저장소 만들기에서 취향을 골라주세요.</p>}
         {!small && (
           <>
-            <p className="lbl mt">입국 도장 · VISAS</p>
+            <p className="lbl mt">연결된 가게 · CONNECTED</p>
             <div className="stamps">
               {stamps.length === 0 && <span className="muted">아직 없어요</span>}
               {stamps.map((s, i) => <div className="stamp" key={s.id} style={{ '--r': `${(i % 2 ? 5 : -6)}deg` }}><b>{s.en}</b><span>{s.name}</span><small>{s.at}</small></div>)}
@@ -308,9 +308,9 @@ export function Shop({ shopId, setShopId, vec, isB, which, setWhich, consents, m
   return (
     <main className="shop-page">
       <div className="demo-bar">
-        <span>가맹점 화면 미리보기 · 실제 쇼핑몰에 ‘취향 여권으로 입장’ 버튼이 붙은 모습이에요</span>
+        <span>가맹점 화면 미리보기 · 실제 쇼핑몰에 ‘취향 저장소로 입장’ 버튼이 붙은 모습이에요</span>
         <div className="seg">{SHOPS.map(s => <button key={s.id} className={s.id === shopId ? 'on' : ''} onClick={() => setShopId(s.id)}>{s.name}</button>)}</div>
-        <div className="seg">{[['me', '내 여권'], ['B', '샘플 여권 B']].map(([k, l]) => <button key={k} className={which === k ? 'on' : ''} onClick={() => setWhich(k)}>{l}</button>)}</div>
+        <div className="seg">{[['me', '내 저장소'], ['B', '샘플 저장소 B']].map(([k, l]) => <button key={k} className={which === k ? 'on' : ''} onClick={() => setWhich(k)}>{l}</button>)}</div>
       </div>
       <div className={`mall ${fashion ? 'fashion' : ''}`}>
         <div className="mall-h">
@@ -322,14 +322,14 @@ export function Shop({ shopId, setShopId, vec, isB, which, setWhich, consents, m
           {on ? (
             <>
               <span className="tp-ic">✓</span>
-              <div><b>{isB ? '샘플 여권 B' : passportName(vec)}</b> 님의 취향 순서로 보고 있어요{fashion && <small> · 인테리어 취향을 패션으로 번역한 참고용 순서</small>}</div>
-              <button onClick={() => leave(shopId)}>여권 없이 보기</button>
+              <div><b>{isB ? '샘플 저장소 B' : passportName(vec)}</b> 님의 취향 순서로 보고 있어요{fashion && <small> · 인테리어 취향을 패션으로 번역한 참고용 순서</small>}</div>
+              <button onClick={() => leave(shopId)}>저장소 없이 보기</button>
             </>
           ) : (
             <>
               <span className="tp-ic"><svg viewBox="0 0 20 20"><rect x="4" y="2" width="12" height="16" rx="2.5" fill="#FFE04A" /><circle cx="10" cy="9" r="3" fill="none" stroke="#2350E6" strokeWidth="1.4" /></svg></span>
-              <div><b>처음 오셨나요?</b> 취향 여권이 있으면 3초 만에 나에게 맞춘 순서로 볼 수 있어요</div>
-              <button className="tp-btn" onClick={() => enter(shopId)}>취향 여권으로 입장</button>
+              <div><b>처음 오셨나요?</b> 취향 저장소가 있으면 3초 만에 나에게 맞춘 순서로 볼 수 있어요</div>
+              <button className="tp-btn" onClick={() => enter(shopId)}>취향 저장소로 입장</button>
             </>
           )}
         </div>
@@ -363,13 +363,13 @@ export function Shop({ shopId, setShopId, vec, isB, which, setWhich, consents, m
         <button className="api-t" onClick={() => setApi(a => !a)}>{api ? '▾' : '▸'} 개발자 보기 · 재정렬 API</button>
         {api && (
           <div className="api-in">
-            <p>가게는 상품 목록만 보내고, 여권은 순서와 점수만 돌려줘요. 취향 원본과 체형 치수는 밖으로 나가지 않아요.</p>
+            <p>가게는 상품 목록만 보내고, 저장소는 순서와 점수만 돌려줘요. 취향 원본과 체형 치수는 밖으로 나가지 않아요.</p>
             {lastLog ? (
               <div className="api-g">
                 <div><small>→ 가게가 보낸 요청</small><pre>{JSON.stringify(lastLog.req, null, 2)}</pre></div>
-                <div><small>← 여권이 돌려준 응답</small><pre>{JSON.stringify(lastLog.res, null, 2)}</pre></div>
+                <div><small>← 저장소가 돌려준 응답</small><pre>{JSON.stringify(lastLog.res, null, 2)}</pre></div>
               </div>
-            ) : <p className="muted">여권으로 입장하면 요청과 응답이 여기에 보여요.</p>}
+            ) : <p className="muted">저장소로 입장하면 요청과 응답이 여기에 보여요.</p>}
           </div>
         )}
       </div>
@@ -383,13 +383,13 @@ export function ConsentModal({ shop, onOk, onCancel }) {
   const opts = [
     ['taste', fashion ? '취향 키워드 (인테리어 취향을 패션 언어로 번역)' : '취향 키워드로 상품 순서 맞추기'],
     fashion ? ['body', '추천 사이즈 (치수 원본은 보내지 않아요)'] : ['room', '방 치수 (내 방에 들어가는 상품 표시)'],
-    ['record', '이 가게에서 찜·구매한 기록을 내 여권에 저장'],
+    ['record', '이 가게에서 찜·구매한 기록을 내 저장소에 저장'],
   ];
   return (
     <div className="modal-bg" onClick={onCancel}>
       <div className="modal" onClick={e => e.stopPropagation()}>
         <div className="m-top"><Logo /><span>동의 요청</span></div>
-        <h3><b>{shop.name}</b>에 여권을 보여줄까요?</h3>
+        <h3><b>{shop.name}</b>에 취향 저장소를 연결할까요?</h3>
         {opts.map(([k, l]) => (
           <label className="chk" key={k}><input type="checkbox" checked={sc[k]} disabled={k === 'taste'} onChange={e => setSc({ ...sc, [k]: e.target.checked })} /><span>{l}</span></label>
         ))}
@@ -403,14 +403,14 @@ export function ConsentModal({ shop, onOk, onCancel }) {
   );
 }
 
-/* ---------- 내 여권 ---------- */
+/* ---------- 내 저장소 ---------- */
 export function Passport({ vec, isB, which, setWhich, signals, toggleSignal, onNudge, manual, resetManual, stamps, consents, revoke, logs, go }) {
   const SC = { taste: '취향 키워드', room: '방 치수', body: '추천 사이즈', record: '기록 저장' };
   return (
     <main className="pp-page">
       <section className="sec grey tight">
-        <Title eyebrow="My Passport" light="내 취향을" bold="들고 다니다" sub="취향은 내가 고치고, 누구에게 보여줄지도 내가 정해요." />
-        <div className="center mb30"><div className="seg big">{[['me', '내 여권'], ['B', '샘플 여권 B (쿨톤·메탈·테크)']].map(([k, l]) => <button key={k} className={which === k ? 'on' : ''} onClick={() => setWhich(k)}>{l}</button>)}</div></div>
+        <Title eyebrow="My Storage" light="내 취향을" bold="들고 다니다" sub="취향은 내가 고치고, 누구에게 보여줄지도 내가 정해요." />
+        <div className="center mb30"><div className="seg big">{[['me', '내 저장소'], ['B', '샘플 저장소 B (쿨톤·메탈·테크)']].map(([k, l]) => <button key={k} className={which === k ? 'on' : ''} onClick={() => setWhich(k)}>{l}</button>)}</div></div>
         <PassportBook vec={vec} isB={isB} stamps={stamps} editable={!isB} onNudge={onNudge} />
         {!isB && Object.keys(manual).length > 0 && <div className="center"><button className="link" onClick={resetManual}>직접 고친 값 되돌리기</button></div>}
       </section>
@@ -418,7 +418,7 @@ export function Passport({ vec, isB, which, setWhich, signals, toggleSignal, onN
         <section className="sec white tight">
           <div className="two">
             <div className="panel-w">
-              <h3>여권에 쌓인 신호 <span>{signals.filter(s => !s.off).length}</span></h3>
+              <h3>저장소에 쌓인 신호 <span>{signals.filter(s => !s.off).length}</span></h3>
               <p className="muted">선물·가족용처럼 내 취향이 아닌 건 빼주세요</p>
               <ul className="sig">
                 {signals.map(s => (
@@ -427,13 +427,13 @@ export function Passport({ vec, isB, which, setWhich, signals, toggleSignal, onN
                     <button onClick={() => toggleSignal(s.id)}>{s.off ? '다시 포함' : '내 취향 아님'}</button>
                   </li>
                 ))}
-                {signals.length === 0 && <li className="muted">아직 신호가 없어요 <button className="link" onClick={() => go('make')}>여권 만들기</button></li>}
+                {signals.length === 0 && <li className="muted">아직 신호가 없어요 <button className="link" onClick={() => go('make')}>저장소 만들기</button></li>}
               </ul>
             </div>
             <div className="panel-w">
               <h3>동의 관리 <span>{Object.keys(consents).length}</span></h3>
               <p className="muted">누가 언제 무엇을 받았는지 보고, 한 번에 철회해요</p>
-              {Object.keys(consents).length === 0 && <p className="muted mt">아직 여권을 보여준 가게가 없어요.</p>}
+              {Object.keys(consents).length === 0 && <p className="muted mt">아직 저장소를 연결한 가게가 없어요.</p>}
               {Object.entries(consents).map(([id, c]) => {
                 const s = SHOPS.find(x => x.id === id), n = signals.filter(x => x.shopId === id).length, calls = logs.filter(l => l.shopId === id).length;
                 return (

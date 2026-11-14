@@ -35,7 +35,7 @@ export function topAxes(v, n = 4, min = 0.3) {
 
 const argmax = (v, keys) => keys.reduce((b, k) => ((v[k] || 0) > (v[b] || 0) ? k : b), keys[0]);
 export function passportName(v) {
-  if (isEmpty(v)) return '아직 비어 있는 여권';
+  if (isEmpty(v)) return '아직 비어 있는 저장소';
   const ADJ = { warm: '따뜻한', cool: '차분한', mono: '단정한', vivid: '선명한' };
   const MAT = { wood: '원목', metal: '메탈', fabric: '패브릭' };
   const NOUN = { minimal: '미니멀리스트', cozy: '홈바디', vintage: '빈티지 수집가', tech: '셋업 장인' };

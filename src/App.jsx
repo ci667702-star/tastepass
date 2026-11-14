@@ -51,14 +51,14 @@ function App() {
     setLogs(l => [...l, { shopId: id, at: now(), req: { endpoint: 'POST /v1/rerank', passport_token: 'tp_tok_••••', items: shop.items.map(p => p.id).join(', ') }, res: { ranked: ranked.slice(0, 5).map(r => `${r.id} · ${r.m}%`).join(', ') + ' …', raw_taste: '전달 안 함', body_size: id === 'fit' ? '추천 사이즈만' : undefined } }]);
   };
   const enter = id => {
-    if (isEmpty(vec)) { say('여권이 비어 있어요. 먼저 여권을 만들어 주세요'); return; }
+    if (isEmpty(vec)) { say('저장소가 비어 있어요. 먼저 저장소를 만들어 주세요'); return; }
     if (consents[id]) { setMode(m => ({ ...m, [id]: true })); log(id, vec); return; }
     setAsking(id);
   };
   const agree = scopes => {
     const id = asking;
     setConsents(c => ({ ...c, [id]: { scopes, at: now() } })); setMode(m => ({ ...m, [id]: true })); setAsking(null); log(id, vec);
-    say('입국 도장이 찍혔어요');
+    say('가게에 취향 저장소가 연결됐어요');
   };
   const revoke = id => {
     setConsents(c => { const n = { ...c }; delete n[id]; return n; }); setMode(m => ({ ...m, [id]: false }));
@@ -66,10 +66,10 @@ function App() {
   };
   const record = (p, id, kind) => {
     const c = consents[id];
-    if (!c || !mode[id]) return say(kind === '찜' ? '찜했어요 (여권 없이 보는 중이라 여권엔 기록 안 됨)' : '구매했어요 (여권엔 기록 안 됨)');
-    if (!c.scopes.record) return say('기록 저장에 동의하지 않아 여권엔 남기지 않았어요');
+    if (!c || !mode[id]) return say(kind === '찜' ? '찜했어요 (저장소 없이 보는 중이라 기록 안 됨)' : '구매했어요 (저장소엔 기록 안 됨)');
+    if (!c.scopes.record) return say('기록 저장에 동의하지 않아 저장소엔 남기지 않았어요');
     addSignals([{ src: kind === '찜' ? '찜' : '가맹점구매', w: SRC_WEIGHT[kind === '찜' ? '찜' : '가맹점구매'], label: `${SHOPS.find(s => s.id === id).name} · ${p.name}`, v: p.v, shopId: id }]);
-    say(`여권에 기록됐어요 → 다음 추천에 반영 (${kind})`);
+    say(`저장소에 기록됐어요 → 다음 추천에 반영 (${kind})`);
   };
 
   const tryProduct = pid => {
@@ -104,7 +104,7 @@ function App() {
         <Header page="studio" go={go} />
         <Studio mode={studioMode} setMode={setStudioMode} room={room} setRoom={setRoom} objects={objects} setObjects={setObjects}
           previewObj={previewObj} setPreviewObj={setPreviewObj} tryProduct={tryProduct} body={body} setBody={setBody}
-          outfit={outfit} setOutfit={setOutfit} vec={vec} passName={isEmpty(vec) ? '여권 비어 있음' : passportName(vec)}
+          outfit={outfit} setOutfit={setOutfit} vec={vec} passName={isEmpty(vec) ? '저장소 비어 있음' : passportName(vec)}
           signalsCount={signals.filter(s => !s.off).length} onBuy={pid => buyFurniture(pid)} go={go} say={say} />
         {toast && <div className="toast" key={toast.id}>{toast.msg}</div>}
       </div>

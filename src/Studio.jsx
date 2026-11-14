@@ -390,7 +390,7 @@ export default function Studio(props) {
             {tab === 'recs' && (
               <div className="props">
                 <div className="prop-h">내 취향 + 남은 공간 기준</div>
-                {isEmpty(vec) && <p className="empty sm">여권이 비어 있어 크기만 봐요</p>}
+                {isEmpty(vec) && <p className="empty sm">저장소가 비어 있어 크기만 봐요</p>}
                 {recs.map(p => (
                   <div key={p.id} className={`rec ${p.fits ? '' : 'dim'} ${previewObj?.productId === p.id ? 'act' : ''}`}>
                     <img src={thumb('f' + p.id, furnitureThumb(p))} alt="" />
@@ -406,7 +406,7 @@ export default function Studio(props) {
           </div>
           <div className="side-f">
             <button className="pill line sm" onClick={() => go('shop')}>가맹점 가기</button>
-            <span>여권 신호 {signalsCount}개</span>
+            <span>저장소 신호 {signalsCount}개</span>
           </div>
         </aside>
       </div>
