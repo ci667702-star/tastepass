@@ -9,7 +9,7 @@ export function Logo({ onClick }) {
   return (
     <button className="logo" onClick={onClick}>
       <svg viewBox="0 0 40 40" className="logo-mark"><rect x="6" y="3" width="28" height="34" rx="6" fill="#2350E6" /><circle cx="20" cy="17" r="7" fill="none" stroke="#FFE04A" strokeWidth="2.4" /><path d="M20 11.5l1.7 4 4 .3-3 2.6 1 4L20 20.2l-3.7 2.2 1-4-3-2.6 4-.3z" fill="#FFE04A" /><rect x="12" y="28" width="16" height="2.4" rx="1.2" fill="#fff" opacity=".7" /></svg>
-      <span>취향여권</span>
+      <span>취향저장소</span>
     </button>
   );
 }
@@ -32,7 +32,7 @@ export function Footer() {
       <div className="f-in">
         <div>
           <div className="f-links"><a>서비스 이용약관</a><i /><a><b>개인정보처리방침</b></a><i /><a>가맹점 입점 문의</a></div>
-          <p>취향여권 TastePass · GEEKs Ideathon 2026 프로토타입</p>
+          <p>취향 저장소 TastePass · GEEKs Ideathon 2026 프로토타입</p>
           <p>화면 속 가게 이름과 상품, 데이터는 모두 시연용 가상 데이터입니다.</p>
         </div>
         <span className="pill-s wide">Partner Site <em>▾</em></span>
